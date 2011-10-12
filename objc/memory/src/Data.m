@@ -1,22 +1,25 @@
+#import <Foundation/NSString.h>
+#import <Foundation/NSDateFormatter.h>
+
 #import "Data.h"
 
 @implementation Data
 
--(id) initWithIdAndName:(unsigned int)aId dataName:(NSString*) aName {
+-(id) initWithIdAndName:(NSUInteger)aId dataName:(NSString*) aName {
   self = [self init];
   if (self != nil) {
 	dataId = aId;
-	name = aName;
+	name = [aName retain];
 	date = [NSDate date];
   }
   return self;
 }
 
--(unsigned int) getId {
+-(NSUInteger) getId {
   return dataId;
 }
 
--(NSString*) getName {
+-(id) getName {
   return name;
 }
 
@@ -24,12 +27,18 @@
   return date;
 }
 
+-(NSString*)dataString {
+  return [NSString stringWithFormat:@"%d:%@:%@",dataId,name,[date description]];
+}
+
 - (NSUInteger) hash {
   return [name hash];
 }
 
 - (void) dealloc {
+  NSLog(@"Data -> dealoc\n");
   [name release];
+  [date release];
   [super dealloc];
 }
 

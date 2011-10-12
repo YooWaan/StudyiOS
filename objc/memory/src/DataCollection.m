@@ -1,3 +1,5 @@
+#import <Foundation/NSArray.h>
+
 #import "DataCollection.h"
 #import "Data.h"
 
@@ -17,7 +19,9 @@
 
 -(void) addData:(NSString*)aName {
   id dat = [self createData:[array count] dataName: aName];
+  //id dat = [[Data alloc] initWithIdAndName:[array count] dataName:aName];
   [array addObject: dat];
+  //[dat autorelease];
 }
 
 -(void) removeDataAt:(NSUInteger)index {
@@ -30,6 +34,18 @@
 
 -(NSInteger) count {
   return [array count];
+}
+
+-(NSString*) dataString {
+  NSMutableString * str = [[NSMutableString alloc] init];
+  int count = [array count];
+  int i;
+  for (i = 0; i < count; i++) {
+	id obj = [array objectAtIndex: i];
+	[str appendString:[obj dataString]];
+	[str appendString:@"\n"];
+  }
+  return str;
 }
 
 -(void) dealloc {

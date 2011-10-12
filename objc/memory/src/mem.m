@@ -13,13 +13,13 @@
 
 }
 
-- (id) createDataArray:(BOOL) useGCArray;
-- (void) addData:(id) dataArray;
+//- (id) createDataArray:(BOOL) useGCArray;
+//- (void) addData:(DataArray*) dataArray;
 
 @end
 
 @implementation DataTool
-
+/*
 - (id) createDataArray:(BOOL) useGCArray {
   NSMutableArray* data = [[NSMutableArray alloc] init];
   id darray;
@@ -30,8 +30,7 @@
   }
   return darray;
 }
-
-- (void) addData:(id) dataArray {
+(void) addData:(id) dataArray {
   FILE* file;
   unsigned int size = 1024;
   char buff[size];
@@ -40,12 +39,42 @@
   }
   while (fgets(buff, size-1, file) != NULL) {
 	buff[ strlen(buff) -1] = '\0';
+	//NSLog(@"%@\n", [NSString stringWithUTF8String: buff]);
 	[dataArray addData:[NSString stringWithUTF8String: buff]];
   }
   fclose(file);
 }
+*/
 
 @end
+
+void addData(id dataArray) {
+  FILE* file;
+  unsigned int size = 1024;
+  char buff[size];
+  if ((file = fopen("data/dat.csv","r")) == NULL) {
+	return;
+  }
+  while (fgets(buff, size-1, file) != NULL) {
+	buff[ strlen(buff) -1] = '\0';
+	id string = [NSString stringWithUTF8String: buff];
+	[dataArray addData:string];
+	[string release];
+  }
+  fclose(file);
+}
+
+
+id createDataArray(BOOL useGCArray) {
+  NSMutableArray* data = [[NSMutableArray alloc] init];
+  id darray;
+  if (useGCArray) {
+	darray = [[GCArray alloc] initWithArray:data];
+  } else {
+	darray = [[DataArray alloc] initWithArray:data];
+  }
+  return darray;
+}
 
 int main(int argc, char* argv[]) {
   BOOL useGCArray = NO;
@@ -55,17 +84,21 @@ int main(int argc, char* argv[]) {
 	  useGCArray = YES;
 	}
   }
-  id pool = [[NSAutoreleasePool alloc] init];
-  id tool = [[[DataTool alloc] init] autorelease];
-  id data = [tool createDataArray: useGCArray];
 
-  for (i = 0; i < 500 ; i++) {
-	[tool addData:data];
-	usleep(10);
+  id data = createDataArray(useGCArray);
+
+  for (i = 0; i < 200 ; i++) {
+	id pool = [[NSAutoreleasePool alloc] init];
+	addData(data);
+	//usleep(10);
+	//NSLog(@"-- ADD --%@\n", [data dataString]);
 	[data clear];
-	usleep(10);
+	//NSLog(@"-- CLEAR --%d\n", [data count]);
+	//usleep(10);
+	[pool release];
   }
 
-  [pool release];
+  [data release];
+
   return 0;
 }

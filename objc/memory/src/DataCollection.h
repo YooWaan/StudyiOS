@@ -3,12 +3,14 @@
 
 #import <Foundation/NSObject.h>
 #import <Foundation/NSArray.h>
+#import <Foundation/NSString.h>
 
 @protocol DataCollection
 
 -(void) addData:(NSString*)aName;
 -(void) removeDataAt: (NSUInteger)index;
 -(void) clear;
+-(NSString*)dataString;
 -(NSInteger) count;
 
 @end

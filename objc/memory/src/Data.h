@@ -7,19 +7,21 @@
 
 @interface Data : NSObject
 {
-  unsigned int dataId;
-  NSString* name;
+  NSUInteger dataId;
+  id name;
   NSDate* date;
 }
 
--(id) initWithIdAndName:(unsigned int)aId dataName:(NSString*) aName;
+-(id) initWithIdAndName:(NSUInteger)aId dataName:(NSString*) aName;
 
 //@property(readonly, copy) int id;
 //@property(getter=getName,setter=setName,retain) NSString* name;
 
--(unsigned int) getId;
--(NSString*) getName;
+-(NSUInteger) getId;
+-(id) getName;
 -(NSDate*) getDate;
+
+-(NSString*) dataString;
 
 @end
 
