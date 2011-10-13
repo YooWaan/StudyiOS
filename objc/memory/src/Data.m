@@ -10,7 +10,7 @@
   if (self != nil) {
 	dataId = aId;
 	name = [aName retain];
-	date = [NSDate date];
+	date = [[NSDate date] retain];
   }
   return self;
 }
@@ -36,7 +36,6 @@
 }
 
 - (void) dealloc {
-  NSLog(@"Data -> dealoc\n");
   [name release];
   [date release];
   [super dealloc];

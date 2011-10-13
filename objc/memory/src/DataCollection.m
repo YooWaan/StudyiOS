@@ -21,7 +21,7 @@
   id dat = [self createData:[array count] dataName: aName];
   //id dat = [[Data alloc] initWithIdAndName:[array count] dataName:aName];
   [array addObject: dat];
-  //[dat autorelease];
+  [dat autorelease];
 }
 
 -(void) removeDataAt:(NSUInteger)index {

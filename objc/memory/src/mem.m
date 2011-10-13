@@ -1,12 +1,15 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #import <Foundation/NSAutoreleasePool.h>
 #import <Foundation/NSString.h>
 
 #import "DataCollection.h"
 #import "GCArray.h"
+
+/*
 
 @interface DataTool : NSObject
 {
@@ -19,7 +22,6 @@
 @end
 
 @implementation DataTool
-/*
 - (id) createDataArray:(BOOL) useGCArray {
   NSMutableArray* data = [[NSMutableArray alloc] init];
   id darray;
@@ -44,9 +46,9 @@
   }
   fclose(file);
 }
-*/
 
 @end
+*/
 
 void addData(id dataArray) {
   FILE* file;
@@ -59,7 +61,6 @@ void addData(id dataArray) {
 	buff[ strlen(buff) -1] = '\0';
 	id string = [NSString stringWithUTF8String: buff];
 	[dataArray addData:string];
-	[string release];
   }
   fclose(file);
 }
@@ -78,24 +79,28 @@ id createDataArray(BOOL useGCArray) {
 
 int main(int argc, char* argv[]) {
   BOOL useGCArray = NO;
-  int i;
+  int i, loop = 200;
   for (i = 0; i < argc; i++) {
 	if (strcmp("-gc", argv[i]) == 0) {
 	  useGCArray = YES;
+	} else if (strcmp("-loop", argv[i]) == 0) {
+	  loop = atoi(argv[++i]);
 	}
   }
 
   id data = createDataArray(useGCArray);
 
-  for (i = 0; i < 200 ; i++) {
+  for (i = 0; i < loop ; i++) {
+
 	id pool = [[NSAutoreleasePool alloc] init];
 	addData(data);
-	//usleep(10);
+	sleep(1);
 	//NSLog(@"-- ADD --%@\n", [data dataString]);
 	[data clear];
 	//NSLog(@"-- CLEAR --%d\n", [data count]);
-	//usleep(10);
+	sleep(1);
 	[pool release];
+	//[data release];
   }
 
   [data release];

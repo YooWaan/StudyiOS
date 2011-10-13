@@ -14,13 +14,20 @@ ${CHECK_COMMAND} &> /dev/null &
 #${CHECK_COMMAND} &
 CHECK_PID=$!
 
-data=`ps hlp ${CHECK_PID}`
-while [ "${data}" != "" ];
+PS_COMMAND="ps hlp ${CHECK_PID}"
+data=`${PS_COMMAND}`
+datalen=`${PS_COMMAND} | wc -l`
+
+while [ ${datalen} -eq 2 ];
 do
-	echo $data >> ${DAT_FILE}
-	data=`ps hlp ${CHECK_PID}`
+	echo $data | tail -n 1 >> ${DAT_FILE}
+
+	sleep 1
+
+	data=`${PS_COMMAND}`
+	datalen=`${PS_COMMAND} | wc -l`
 done
 
-awk '{printf("%d\t%s\n", NR, $8);}' ${DAT_FILE} > chk.dat
+awk '{printf("%d\t%s\n", NR, $21);}' ${DAT_FILE} > chk.dat
 
 gnuplot plot.sh
