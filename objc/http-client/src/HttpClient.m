@@ -1,7 +1,7 @@
-#include "GravityClient.h"
+#include "HttpClient.h"
 #include <stdio.h>
 
-@implementation GravityClient
+@implementation HandleHttpClient
 
 - (void) hello {
 	printf("Hello.\n");

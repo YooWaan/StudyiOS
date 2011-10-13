@@ -1,9 +1,10 @@
-#ifndef GRAVITYCLIENT_H
-#define GRAVITYCLIENT_H
+#ifndef HANDLE_HTTPCLIENT_H
+#define HANDLE_HTTPCLIENT_H
 
-#include <Foundation/NSObject.h>
+#import <Foundation/NSObject.h>
 
-@interface GravityClient : NSObject
+@interface HandleHttpClient : NSObject {
+}
 - (void) hello;
 @end
 

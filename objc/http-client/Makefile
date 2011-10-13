@@ -7,11 +7,11 @@
 SRCDIR	= src
 OBJDIR	= objs
 
-TARGET	= httpclient
+TARGET	= http
 CC		= gcc
 CFLAG	= -Wall
 INC		= 
-OBJS	= GravityClient.o \
+OBJS	= HttpClient.o \
 		SessionContext.o \
 		BasicMethod.o \
 		XMLContentsDelegate.o
@@ -24,4 +24,4 @@ $(OBJS):
 
 
 clean:
-	-rm $(TARGET) $(SRCDIR)/*.o
+	-rm $(TARGET) $(OBJDIR)/*.o
