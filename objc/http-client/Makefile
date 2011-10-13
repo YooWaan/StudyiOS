@@ -5,24 +5,23 @@
 #
 
 SRCDIR	= src
+OBJDIR	= objs
 
-TARGET	= http
+TARGET	= httpclient
 CC		= gcc
-#CFLAG	= -Wall -lobjc -lgnustep-base -fobjc-exceptions 
-#CFLAG	= -Wall -lobjc -lgnustep-base -fobjc-std=objc1
-CFLAG	= -Wall -lobjc -lgnustep-base -fconstant-string-class=NSConstantString
-INC		= -I/usr/include/GNUstep
-OBJS	= $(SRCDIR)/GravityClient.o \
-		$(SRCDIR)/SessionContext.o \
-		$(SRCDIR)/BasicMethod.o \
-		$(SRCDIR)/XMLContentsDelegate.o
+CFLAG	= -Wall
+INC		= 
+OBJS	= GravityClient.o \
+		SessionContext.o \
+		BasicMethod.o \
+		XMLContentsDelegate.o
 
 all: $(OBJS)
-	$(CC) $(CFLAG) $(INC) -o ${TARGET} $(SRCDIR)/$(TARGET).m $(OBJS)
+	$(CC) $(CFLAG) $(INC) -o ${TARGET} $(SRCDIR)/$(TARGET).m $(addprefix $(OBJDIR)/, $(OBJS)) -framework Foundation
 
-.SUFFIXES: .o .m
-.m.o:
-	$(CC) $(CFLAG) $(INC) -o $@ -c $<
+$(OBJS):
+	$(CC) $(CFLAG) $(INC) -o $(OBJDIR)/$@ -c $(SRCDIR)/$(@:.o=.m)
+
 
 clean:
 	-rm $(TARGET) $(SRCDIR)/*.o
