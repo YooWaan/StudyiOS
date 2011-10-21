@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-@interface URLDelegate : NSObject //<NSURLConnectionDelegate>
+@interface URLDelegate : NSObject <NSURLConnectionDelegate>
 {
   NSMutableData* contents;
   BOOL finished;
@@ -15,7 +15,8 @@
 
 -(id) init {
   if ((self = [super init]) != nil) {
-    contents = [[[NSMutableData alloc] init] autorelease];
+    //contents = [[[NSMutableData alloc] init] autorelease];
+    contents = [[NSMutableData alloc] init];
     finished = NO ;
   }
   return self;
@@ -50,40 +51,34 @@
 
 void send() {
 
-  NSURLRequest *req;
-  NSString* url = @"https://raw.github.com/k16shikano/xml2tex/master/sample/sample.xml";
-  url = @"http://www11.atpages.jp/~shingoureds/index.php?cmd=rss&ver=1.0";
+  NSString* url = @"http://192.168.5.160/data/list.xml";
 
-  req = [[[NSURLRequest alloc]
-		  initWithURL:[NSURL URLWithString:url]]
-	  autorelease];
+  NSURLRequest * req = [[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]] autorelease];
   URLDelegate* delegate = [[[URLDelegate alloc] init] autorelease];
 
-  NSURLConnection* connection = [NSURLConnection connectionWithRequest:req delegate:delegate] ;
+  //NSURLConnection* connection = [NSURLConnection connectionWithRequest:req delegate:delegate] ;
+  [NSURLConnection connectionWithRequest:req delegate:delegate] ;
 
   //[[NSRunLoop currentRunLoop] run];
 
-  while (![delegate finishDelegate]) {
-    [[NSRunLoop currentRunLoop] runMode: NSRunLoopCommonModes
-				beforeDate: [NSDate distantFuture]];
-  }
+  NSRunLoop* loop = [NSRunLoop currentRunLoop];
+  while ([delegate finishDelegate] == NO && [loop runMode:NSDefaultRunLoopMode beforeDate:[[NSDate distantFuture] autorelease]]);
+
   NSString* str = [[[NSString alloc] initWithData:[delegate contents] encoding:NSUTF8StringEncoding] autorelease];
   NSLog(@"--> %@", str);
 
-
-  //NSURLConnection* connection = [[[NSURLConnection alloc] initWithRequest:req delegate:delegate] autorelease];
-
-
-
+  NSLog(@"endSend");
 }
 
 
 int main(int argc, char ** argv) {
 
-  id pool = [[NSAutoreleasePool alloc] init];
+  NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
   send();
 
+  NSLog(@"release");
   [pool release];
+  NSLog(@"exit");
   return 0;
 }

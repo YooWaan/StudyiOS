@@ -9,10 +9,10 @@ SRCDIR	= ./
 
 TARGET	= urlcon
 CC	= gcc
-CFLAG	= -Wall
+CFLAG	= -g -Wall
 
 all:
 	$(CC) $(CFLAG) -o $(TARGET) $(TARGET).m -framework Foundation
 
 clean:
-	-rm $(TARGET) *.o
+	-rm $(TARGET)
