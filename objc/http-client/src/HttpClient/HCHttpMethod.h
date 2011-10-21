@@ -3,7 +3,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "HCContentsDelegate.h"
+#import "HCMethodDelegate.h"
 #import "HCSession.h"
 
 
@@ -16,7 +16,7 @@ extern NSString * const HC_HTTP_METHOD_DELETE;
 
 @required
 
--(void) setDelegate:(id <HCContentsDelegate>) contentsDelegate;
+-(void) setDelegate:(id <HCMethodDelegate>) delegate;
 
 -(void) execute:(HCSession*) session;
 

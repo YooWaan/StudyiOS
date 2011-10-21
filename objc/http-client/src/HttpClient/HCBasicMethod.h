@@ -3,20 +3,20 @@
 
 #import <Foundation/Foundation.h>
 
-#import "HCContentsDelegate.h"
+#import "HCMethodDelegate.h"
 #import "HCHttpMethod.h"
 
 @interface HCBasicMethod : NSObject <HCHttpMethod>
 {
  @protected
   NSString* pathForRequest;
-  id <HCContentsDelegate> handleContentsDelegate;
+  id <HCMethodDelegate> methodDelegate;
   NSMutableDictionary* requestParameters;
 }
 
--(id)initWithPathAndDelegate:(NSString*)path contentsDelegate:(id <HCContentsDelegate>) delegate;
+-(id)initWithPathAndDelegate:(NSString*)path withMethodDelegate:(id <HCMethodDelegate>) delegate;
 
--(void) setDelegate:(id <HCContentsDelegate>)contentsDelegate;
+-(void) setDelegate:(id <HCMethodDelegate>)delegate;
 
 -(void) execute:(HCSession*) sesssion;
 

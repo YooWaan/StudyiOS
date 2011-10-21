@@ -9,19 +9,30 @@ OBJDIR	= objs
 
 TARGET	= http
 CC		= gcc
-CFLAG	= -Wall
-INC		= 
-OBJS	= HttpClient.o \
-		SessionContext.o \
-		BasicMethod.o \
-		XMLContentsDelegate.o
+CFLAG	= -g -Wall
+INC		= -I ./$(SRCDIR)/HttpClient -I ./$(SRCDIR)/Rest 
+OBJS	= $(OBJDIR)/*.o
+#OBJS	= HttpClient.o \
+#		SessionContext.o \
+#		BasicMethod.o \
+#		XMLContentsDelegate.o
 
-all: $(OBJS)
-	$(CC) $(CFLAG) $(INC) -o ${TARGET} $(SRCDIR)/$(TARGET).m $(addprefix $(OBJDIR)/, $(OBJS)) -framework Foundation
+MODULES = HttpClient \
+			Rest
 
-$(OBJS):
-	$(CC) $(CFLAG) $(INC) -o $(OBJDIR)/$@ -c $(SRCDIR)/$(@:.o=.m)
+#.PHONY=all $(MODULES)
+#	$(CC) $(CFLAG) $(INC) -o ${TARGET} $(SRCDIR)/$(TARGET).m $(addprefix $(OBJDIR)/, $(OBJS)) -framework Foundation
 
+all: $(MODULES)
+	$(CC) $(CFLAG) $(INC) -o ${TARGET} $(SRCDIR)/$(TARGET).m $(OBJS) -framework Foundation
+
+module:$(MODULES)
+
+$(MODULES):
+	-cd $(addprefix $(SRCDIR)/, $@); make
+
+#$(OBJS):
+#	$(CC) $(CFLAG) $(INC) -o $(OBJDIR)/$@ -c $(SRCDIR)/$(@:.o=.m)
 
 clean:
 	-rm $(TARGET) $(OBJDIR)/*.o

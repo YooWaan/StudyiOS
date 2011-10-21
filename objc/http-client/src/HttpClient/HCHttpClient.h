@@ -5,6 +5,12 @@
 
 #import "HCHttpMethod.h"
 #import "HCSession.h"
+#import "HCGetMethod.h"
+#import "HCPostMethod.h"
+#import "HCPutMethod.h"
+#import "HCDeleteMethod.h"
+#import "HCDataContentsDelegate.h"
+#import "HCFileContentsDelegate.h"
 
 @interface HCHttpClient : NSObject
 {

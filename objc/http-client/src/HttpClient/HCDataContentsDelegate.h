@@ -3,10 +3,10 @@
 
 #import <Foundation/Foundation.h>
 
-#import "HCBasicContentsDelegate.h"
+#import "HCBasicMethodDelegate.h"
 
 
-@interface HCDataContentsDelegate : HCBasicContentsDelegate
+@interface HCDataContentsDelegate : HCBasicMethodDelegate
 {
  @protected
   NSMutableData* contentsData;

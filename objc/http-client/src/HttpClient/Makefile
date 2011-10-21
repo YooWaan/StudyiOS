@@ -8,13 +8,18 @@ SRCDIR	= .
 OBJDIR	= ../../objs
 
 CC		= gcc
-CFLAG	= -Wall
+CFLAG	= -g -Wall
 INC		= -I .
 OBJS	= \
-			HCBasicContentsDelegate.o \
+			HCBasicMethodDelegate.o \
 			HCDataContentsDelegate.o \
+			HCFileContentsDelegate.o \
 			HCURLConnectionDelegate.o \
 			HCBasicMethod.o \
+			HCGetMethod.o \
+			HCPostMethod.o \
+			HCPutMethod.o \
+			HCDeleteMethod.o \
 			HCSession.o \
 			HCHttpClient.o
 

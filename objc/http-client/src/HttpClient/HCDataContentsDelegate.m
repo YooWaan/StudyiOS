@@ -5,7 +5,7 @@
 
 -(id) init {
   if ((self = [super init]) != nil) {
-	contentsData = [[NSData alloc] init];
+	contentsData = [[NSMutableData alloc] init];
   }
   return self;
 }
@@ -16,7 +16,12 @@
 }
 
 -(void) runHandle:(NSURLConnection *)connection didReceiveData:(NSData *)data{
+  //NSLog(@"runHandle---> %@", data);
   [contentsData appendData:data];
+}
+
+-(id) ResponseContents {
+  return [self contents];
 }
 
 -(NSData*) contents {

@@ -27,22 +27,20 @@ NSString* HCHttpMethodURLEncode(NSString* string) {
 
 -(id <NSURLConnectionDelegate>) connectionDelegate;
 
--(NSURLRequest*) request:(HCSession*) session;
+-(NSURLRequest*) URLRequest:(HCSession*) session;
 
 -(BOOL) useBody;
-
--(void) customizeURLRequest:(NSURLRequest*) request;
 
 @end
 
 @implementation HCBasicMethod
 
--(id)initWithPathAndDelegate:(NSString*)path contentsDelegate:(id <HCContentsDelegate>) delegate {
+-(id)initWithPathAndDelegate:(NSString*)path withMethodDelegate:(id <HCMethodDelegate>) delegate {
   self = [super init];
   if (self != nil) {
 	pathForRequest = path;;
-	handleContentsDelegate = delegate;
-	requestParameters = [[[NSMutableDictionary alloc] init] autorelease];
+	methodDelegate = delegate;
+	requestParameters = [[NSMutableDictionary alloc] init];
   }
   return self;
 }
@@ -61,8 +59,8 @@ NSString* HCHttpMethodURLEncode(NSString* string) {
   return ([method isEqualToString:HC_HTTP_METHOD_POST] || [method isEqualToString:HC_HTTP_METHOD_PUT]) ? YES : NO ;
 }
 
--(void) setDelegate:(id <HCContentsDelegate>)contentsDelegate {
-  handleContentsDelegate = contentsDelegate;
+-(void) setDelegate:(id <HCMethodDelegate>)delegate {
+  methodDelegate = delegate;
 }
 
 -(void) addParameter:(NSString*) value parameterName:(NSString*) name {
@@ -78,17 +76,23 @@ NSString* HCHttpMethodURLEncode(NSString* string) {
 }
 
 -(void) execute:(HCSession*) session {
-  NSURLRequest * request = [self request: session];
+  NSURLRequest * request = [self URLRequest: session];
   id <NSURLConnectionDelegate> connectionDelegate = [self connectionDelegate];
-  NSURLConnection* connection = [[[NSURLConnection alloc] initWithRequest:request delegate: connectionDelegate startImmediately: NO] autorelease];
-  [connection start];
+
+  //NSURLConnection* connection = [[[NSURLConnection alloc] initWithRequest:request delegate:connectionDelegate startImmediately: NO] autorelease];
+  //NSURLConnection* connection = [NSURLConnection connectionWithRequest:request delegate: connectionDelegate ];
+  [NSURLConnection connectionWithRequest:request delegate: connectionDelegate ];
+
+  NSRunLoop* loop = [NSRunLoop currentRunLoop];
+  while ([methodDelegate status] != HCMethodDone && [loop runMode:NSDefaultRunLoopMode beforeDate:[[NSDate distantFuture] autorelease]]);
+
 }
 
 -(id <NSURLConnectionDelegate>) connectionDelegate {
-  return [[[HCURLConnectionDelegate alloc] initWithContentsDelegate:handleContentsDelegate] autorelease];
+  return [[[HCURLConnectionDelegate alloc] initWithContentsDelegate:methodDelegate] autorelease];
 }
 
--(NSURLRequest*) request:(HCSession*) session {
+-(NSURLRequest*) URLRequest:(HCSession*) session {
   NSMutableURLRequest* request = [[[NSMutableURLRequest alloc] init] autorelease];
 
   // METHOD , URL , HEADER
@@ -101,8 +105,8 @@ NSString* HCHttpMethodURLEncode(NSString* string) {
 	  [request addValue:[headers objectForKey:key] forHTTPHeaderField:key];
   }
 
-  // customize by sub class
-  [self customizeURLRequest:request];
+  // customized by sub class
+  [methodDelegate customizeURLRequest:request];
 
   return request;
 }
@@ -124,9 +128,7 @@ NSString* HCHttpMethodURLEncode(NSString* string) {
 	[url appendString:session.contextpath];
 	[url appendString:@"/"];
   }
-
   [url appendString:pathForRequest];
-
   if (![self useBody] && [requestParameters count] > 0) {
 	BOOL first = YES;
 	NSEnumerator* enumerator = [requestParameters keyEnumerator];
@@ -145,11 +147,8 @@ NSString* HCHttpMethodURLEncode(NSString* string) {
 	}
   }
 
+  //NSLog(@"url --> %@", url);
   return url;
-}
-
--(void) customizeURLRequest:(NSURLRequest*) request {
-  // NOOP
 }
 
 @end

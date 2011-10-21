@@ -3,12 +3,13 @@
 
 #import <Foundation/Foundation.h>
 
-#import "HCBasicContentsDelegate.h"
+#import "HCBasicMethodDelegate.h"
 
-@interface HCFileContentsDeleate : HCBasicContentsDelegate
+@interface HCFileContentsDelegate : HCBasicMethodDelegate
 {
  @protected
   NSString* filePath;
+  NSFileHandle* fileHandle;
 }
 
 -(id) initWithFilepath:(NSString*) path;

@@ -10,12 +10,28 @@
 
 -(id) init {
   if ((self = [super init]) != nil) {
-	sessionHeader = [[[NSMutableDictionary alloc] init] autorelease];
+	sessionHeader = [[NSMutableDictionary alloc] init];
   }
   return self;
 }
 
+-(id) initWithConnection:(NSString*) hostName specifiedPort:(NSUInteger) portNumber webContextPath:(NSString*) context secureFlag:(BOOL) flag {
+  if ((self = [self init]) != nil) {
+	host = hostName;
+	port = portNumber;
+	contextpath = context;
+	secure = flag;
+  }
+  return self;
+}
+
+-(id) copyWithZone:(NSZone*)zone {
+  return [[[self class] allocWithZone:zone] initWithConnection:host specifiedPort:port webContextPath:contextpath secureFlag:secure];
+}
+
 -(void) dealloc {
+  [host release];
+  [contextpath release];
   [sessionHeader release];
   [super dealloc];
 }
