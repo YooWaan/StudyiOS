@@ -16,9 +16,11 @@
 
 -(id)initWithPathAndDelegate:(NSString*)path withMethodDelegate:(id <HCMethodDelegate>) delegate;
 
--(void) setDelegate:(id <HCMethodDelegate>)delegate;
+-(void)executeMethod:(HCSession*) session asynchronous:(BOOL) async;
 
--(void) execute:(HCSession*) sesssion;
+-(NSURLRequest*) URLRequest:(HCSession*) session;
+
+-(BOOL) useBody;
 
 @end
 

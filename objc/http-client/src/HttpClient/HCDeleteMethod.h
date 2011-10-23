@@ -1,9 +1,9 @@
-#ifndef HCGETMETHOD_H
-#define HCGETMETHOD_H
+#ifndef HCDELETEMETHOD_H
+#define HCDELETEMETHOD_H
 
-#import "HCBasicMethod.h"
+#import "HCGetMethod.h"
 
-@interface HCDeleteMethod : HCBasicMethod
+@interface HCDeleteMethod : HCGetMethod
 {
 
 }

@@ -24,6 +24,8 @@
 
 -(void) communicate:(id <HCHttpMethod>) withMethod;
 
+-(void) communicateInBackground:(id <HCHttpMethod>) withMethod;
+
 @end
 
 #endif

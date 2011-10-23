@@ -26,4 +26,8 @@
   [withMethod execute:activeSession];
 }
 
+-(void) communicateInBackground:(id <HCHttpMethod>) withMethod {
+  [withMethod executeAsynchronous:activeSession];
+}
+
 @end

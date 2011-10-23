@@ -1,9 +1,9 @@
-#ifndef HCPOSTMETHOD_H
-#define HCPOSTMETHOD_H
+#ifndef HCPUTMETHOD_H
+#define HCPUTMETHOD_H
 
-#import "HCBasicMethod.h"
+#import "HCPostMethod.h"
 
-@interface HCPutMethod : HCBasicMethod
+@interface HCPutMethod : HCPostMethod
 {
 
 }

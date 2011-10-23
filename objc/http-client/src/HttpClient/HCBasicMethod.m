@@ -27,10 +27,6 @@ NSString* HCHttpMethodURLEncode(NSString* string) {
 
 -(id <NSURLConnectionDelegate>) connectionDelegate;
 
--(NSURLRequest*) URLRequest:(HCSession*) session;
-
--(BOOL) useBody;
-
 @end
 
 @implementation HCBasicMethod
@@ -63,6 +59,10 @@ NSString* HCHttpMethodURLEncode(NSString* string) {
   methodDelegate = delegate;
 }
 
+-(void) addParameters:(NSDictionary*) parameters {
+  [requestParameters setDictionary:parameters];
+}
+
 -(void) addParameter:(NSString*) value parameterName:(NSString*) name {
   [requestParameters setObject:value forKey:name];
 }
@@ -76,6 +76,15 @@ NSString* HCHttpMethodURLEncode(NSString* string) {
 }
 
 -(void) execute:(HCSession*) session {
+  [self executeMethod:session asynchronous:NO];
+
+}
+
+-(void) executeAsynchronous:(HCSession*) session {
+  [self executeMethod:session asynchronous:YES];
+}
+
+-(void)executeMethod:(HCSession*) session asynchronous:(BOOL) async {
   NSURLRequest * request = [self URLRequest: session];
   id <NSURLConnectionDelegate> connectionDelegate = [self connectionDelegate];
 
@@ -83,10 +92,12 @@ NSString* HCHttpMethodURLEncode(NSString* string) {
   //NSURLConnection* connection = [NSURLConnection connectionWithRequest:request delegate: connectionDelegate ];
   [NSURLConnection connectionWithRequest:request delegate: connectionDelegate ];
 
-  NSRunLoop* loop = [NSRunLoop currentRunLoop];
-  while ([methodDelegate status] != HCMethodDone && [loop runMode:NSDefaultRunLoopMode beforeDate:[[NSDate distantFuture] autorelease]]);
-
+  if (!async) {
+	NSRunLoop* loop = [NSRunLoop currentRunLoop];
+	while ([methodDelegate status] != HCMethodDone && [loop runMode:NSDefaultRunLoopMode beforeDate:[[NSDate distantFuture] autorelease]]);
+  }
 }
+
 
 -(id <NSURLConnectionDelegate>) connectionDelegate {
   return [[[HCURLConnectionDelegate alloc] initWithContentsDelegate:methodDelegate] autorelease];

@@ -5,8 +5,12 @@
 
 @interface HCPostMethod : HCBasicMethod
 {
-
+  NSData* bodyData;
+  NSInputStream* bodyStream;
 }
+
+-(void) setBody:(NSData*) data;
+-(void) setBodyStream:(NSInputStream*) stream;
 
 @end
 

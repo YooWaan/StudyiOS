@@ -19,7 +19,9 @@ extern NSString * const HC_HTTP_METHOD_DELETE;
 -(void) setDelegate:(id <HCMethodDelegate>) delegate;
 
 -(void) execute:(HCSession*) session;
+-(void) executeAsynchronous:(HCSession*) session;
 
+-(void) addParameters:(NSDictionary*) parameters;
 -(void) addParameter:(NSString*) value parameterName:(NSString*) name;
 -(void) removeParameter:(NSString*) name;
 -(NSDictionary*) parameters;

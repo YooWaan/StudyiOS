@@ -17,18 +17,14 @@
 
   __block NSDictionary* list = nil;
 
-  HCDataContentsDelegate* delegate = [[[HCDataContentsDelegate alloc] initWithHandler:^(id contents, NSError* err) {
+  [self get:@"list.xml" withResponseHandler:^(id contents, NSError* err) {
 		NSData* data = (NSData*)contents;
 		NSXMLParser* parser = [[[NSXMLParser alloc] initWithData:data] autorelease];
 		HCXMLToDictionaryDelegate* delegate = [[[HCXMLToDictionaryDelegate alloc] init] autorelease];
 		[parser setDelegate:delegate];
 		[parser parse];
 		list = [delegate data];
-	  }] autorelease];
-
-  HCGetMethod* method = [[[HCGetMethod alloc] initWithPathAndDelegate:@"list.xml" withMethodDelegate:delegate] autorelease];
-
-  [self communicate:method];
+	}];
 
   return list;
 }
@@ -60,7 +56,7 @@ void printArray(NSArray* data) {
   NSLog(@"--- PArray ---");
   NSEnumerator *enumerator = [data objectEnumerator];
   id anObject;
-   while (anObject = [enumerator nextObject]) {
+  while ((anObject = [enumerator nextObject])) {
 	if ([anObject isKindOfClass:[NSDictionary class]]) {
 	  printDictionary(anObject);
 	} else {
