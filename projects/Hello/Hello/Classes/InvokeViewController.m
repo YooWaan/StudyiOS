@@ -50,6 +50,12 @@
 
 -(IBAction)clicked:(id)sender
 {
+    UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Alert"
+                                                         message:@"Clicked"
+                                                        delegate:nil
+                                               cancelButtonTitle:@"OK"
+                                               otherButtonTitles:nil] autorelease];
+    [alertView show];
 
 }
 
