@@ -2,7 +2,7 @@
 //  HelloAppDelegate.m
 //  Hello
 //
-//  Created by developer on 11/10/12.
+//  Created by developer on 11/10/14.
 //  Copyright 2011年 __MyCompanyName__. All rights reserved.
 //
 
@@ -11,13 +11,10 @@
 @implementation HelloAppDelegate
 
 @synthesize window = _window;
-@synthesize navigationController = _navigationController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    // Add the navigation controller's view to the window and display.
-    self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -64,7 +61,6 @@
 - (void)dealloc
 {
     [_window release];
-    [_navigationController release];
     [super dealloc];
 }
 

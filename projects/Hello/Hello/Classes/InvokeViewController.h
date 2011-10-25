@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface InvokeViewController : UIViewController
+@interface InvokeViewController : UIViewController {}
+
+-(IBAction)clicked:(id)sender;
 
 @end

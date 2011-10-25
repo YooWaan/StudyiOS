@@ -48,4 +48,9 @@
 	return YES;
 }
 
+-(IBAction)clicked:(id)sender
+{
+
+}
+
 @end
