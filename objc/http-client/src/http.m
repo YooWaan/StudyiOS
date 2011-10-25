@@ -40,7 +40,8 @@ void printDictionary(NSDictionary* data) {
   id key, value;
   while ((key = [enumerator nextObject])) {
 	value = [data objectForKey:key];
-	if ([key isEqualToString:HC_XML_DICTIONARY_PARENT_KEY]) {
+	if (key == HC_XML_DICTIONARY_PARENT_KEY) {
+	  //	if ([key isEqualToString:HC_XML_DICTIONARY_PARENT_KEY]) {
 	  continue;
 	} if ([value isKindOfClass:[NSDictionary class]]) {
 	  printDictionary(value);
