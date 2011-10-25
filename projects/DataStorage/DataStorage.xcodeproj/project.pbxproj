@@ -1,0 +1,596 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BA65E0391456754200F67FB2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA65E0381456754200F67FB2 /* UIKit.framework */; };
+		BA65E03B1456754200F67FB2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA65E03A1456754200F67FB2 /* Foundation.framework */; };
+		BA65E03D1456754200F67FB2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA65E03C1456754200F67FB2 /* CoreGraphics.framework */; };
+		BA65E0631456754200F67FB2 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA65E0621456754200F67FB2 /* SenTestingKit.framework */; };
+		BA65E0641456754300F67FB2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA65E0381456754200F67FB2 /* UIKit.framework */; };
+		BA65E0651456754300F67FB2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA65E03A1456754200F67FB2 /* Foundation.framework */; };
+		BA65E06D1456754300F67FB2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA65E06B1456754300F67FB2 /* InfoPlist.strings */; };
+		BA65E0701456754300F67FB2 /* DataStorageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BA65E06F1456754300F67FB2 /* DataStorageTests.m */; };
+		BA65E09D145676DD00F67FB2 /* DSDetailViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA65E09B145676DD00F67FB2 /* DSDetailViewController_iPad.xib */; };
+		BA65E09E145676DD00F67FB2 /* DSMasterViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA65E09C145676DD00F67FB2 /* DSMasterViewController_iPad.xib */; };
+		BA65E0A1145676EB00F67FB2 /* DSDetailViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA65E09F145676EB00F67FB2 /* DSDetailViewController_iPhone.xib */; };
+		BA65E0A2145676EB00F67FB2 /* DSMasterViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA65E0A0145676EB00F67FB2 /* DSMasterViewController_iPhone.xib */; };
+		BA65E0AF145676F900F67FB2 /* DSDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA65E0A7145676F900F67FB2 /* DSDetailViewController.m */; };
+		BA65E0B0145676F900F67FB2 /* DSMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA65E0A9145676F900F67FB2 /* DSMasterViewController.m */; };
+		BA65E0B1145676F900F67FB2 /* DSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA65E0AB145676F900F67FB2 /* DSAppDelegate.m */; };
+		BA65E0B41456772700F67FB2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BA65E0B31456772700F67FB2 /* main.m */; };
+		BA65E0BF14567C7100F67FB2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA65E0BA14567C7100F67FB2 /* InfoPlist.strings */; };
+		BA65E0C314567D5E00F67FB2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA65E0C114567D5E00F67FB2 /* Localizable.strings */; };
+		BA65E0DE1456800200F67FB2 /* DataStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BA65E0DC1456800200F67FB2 /* DataStorage.xcdatamodeld */; };
+		BA65E0E1145680CF00F67FB2 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = BA65E0E0145680CF00F67FB2 /* Note.m */; };
+		BA65E0E41456872C00F67FB2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA65E0E31456872C00F67FB2 /* CoreData.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BA65E0661456754300F67FB2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BA65E02B1456754200F67FB2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BA65E0331456754200F67FB2;
+			remoteInfo = DataStorage;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BA65E0341456754200F67FB2 /* DataStorage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DataStorage.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA65E0381456754200F67FB2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		BA65E03A1456754200F67FB2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		BA65E03C1456754200F67FB2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		BA65E0401456754200F67FB2 /* DataStorage-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DataStorage-Info.plist"; sourceTree = "<group>"; };
+		BA65E0611456754200F67FB2 /* DataStorageTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataStorageTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA65E0621456754200F67FB2 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		BA65E06A1456754300F67FB2 /* DataStorageTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DataStorageTests-Info.plist"; sourceTree = "<group>"; };
+		BA65E06C1456754300F67FB2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BA65E06E1456754300F67FB2 /* DataStorageTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataStorageTests.h; sourceTree = "<group>"; };
+		BA65E06F1456754300F67FB2 /* DataStorageTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataStorageTests.m; sourceTree = "<group>"; };
+		BA65E09B145676DD00F67FB2 /* DSDetailViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DSDetailViewController_iPad.xib; sourceTree = "<group>"; };
+		BA65E09C145676DD00F67FB2 /* DSMasterViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DSMasterViewController_iPad.xib; sourceTree = "<group>"; };
+		BA65E09F145676EB00F67FB2 /* DSDetailViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DSDetailViewController_iPhone.xib; sourceTree = "<group>"; };
+		BA65E0A0145676EB00F67FB2 /* DSMasterViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DSMasterViewController_iPhone.xib; sourceTree = "<group>"; };
+		BA65E0A6145676F900F67FB2 /* DSDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSDetailViewController.h; sourceTree = "<group>"; };
+		BA65E0A7145676F900F67FB2 /* DSDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSDetailViewController.m; sourceTree = "<group>"; };
+		BA65E0A8145676F900F67FB2 /* DSMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSMasterViewController.h; sourceTree = "<group>"; };
+		BA65E0A9145676F900F67FB2 /* DSMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSMasterViewController.m; sourceTree = "<group>"; };
+		BA65E0AA145676F900F67FB2 /* DSAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAppDelegate.h; sourceTree = "<group>"; };
+		BA65E0AB145676F900F67FB2 /* DSAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAppDelegate.m; sourceTree = "<group>"; };
+		BA65E0AD145676F900F67FB2 /* DataStorage-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DataStorage-Prefix.pch"; sourceTree = "<group>"; };
+		BA65E0B31456772700F67FB2 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BA65E0BB14567C7100F67FB2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		BA65E0BE14567C7100F67FB2 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = InfoPlist.strings; sourceTree = "<group>"; };
+		BA65E0C214567D5E00F67FB2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
+		BA65E0C514567D8200F67FB2 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = Localizable.strings; sourceTree = "<group>"; };
+		BA65E0DD1456800200F67FB2 /* DataStorage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataStorage.xcdatamodel; sourceTree = "<group>"; };
+		BA65E0DF145680CF00F67FB2 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		BA65E0E0145680CF00F67FB2 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		BA65E0E31456872C00F67FB2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BA65E0311456754200F67FB2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA65E0E41456872C00F67FB2 /* CoreData.framework in Frameworks */,
+				BA65E0391456754200F67FB2 /* UIKit.framework in Frameworks */,
+				BA65E03B1456754200F67FB2 /* Foundation.framework in Frameworks */,
+				BA65E03D1456754200F67FB2 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA65E05D1456754200F67FB2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA65E0631456754200F67FB2 /* SenTestingKit.framework in Frameworks */,
+				BA65E0641456754300F67FB2 /* UIKit.framework in Frameworks */,
+				BA65E0651456754300F67FB2 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BA65E0291456754200F67FB2 = {
+			isa = PBXGroup;
+			children = (
+				BA65E0E31456872C00F67FB2 /* CoreData.framework */,
+				BA65E03E1456754200F67FB2 /* DataStorage */,
+				BA65E0681456754300F67FB2 /* DataStorageTests */,
+				BA65E0371456754200F67FB2 /* Frameworks */,
+				BA65E0351456754200F67FB2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BA65E0351456754200F67FB2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BA65E0341456754200F67FB2 /* DataStorage.app */,
+				BA65E0611456754200F67FB2 /* DataStorageTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BA65E0371456754200F67FB2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BA65E0381456754200F67FB2 /* UIKit.framework */,
+				BA65E03A1456754200F67FB2 /* Foundation.framework */,
+				BA65E03C1456754200F67FB2 /* CoreGraphics.framework */,
+				BA65E0621456754200F67FB2 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BA65E03E1456754200F67FB2 /* DataStorage */ = {
+			isa = PBXGroup;
+			children = (
+				BA65E0A3145676F900F67FB2 /* Classes */,
+				BA65E079145675E000F67FB2 /* Resources */,
+				BA65E0B914567C7100F67FB2 /* en.lproj */,
+				BA65E0BC14567C7100F67FB2 /* ja.lproj */,
+				BA65E03F1456754200F67FB2 /* Supporting Files */,
+			);
+			path = DataStorage;
+			sourceTree = "<group>";
+		};
+		BA65E03F1456754200F67FB2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BA65E0401456754200F67FB2 /* DataStorage-Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BA65E0681456754300F67FB2 /* DataStorageTests */ = {
+			isa = PBXGroup;
+			children = (
+				BA65E06E1456754300F67FB2 /* DataStorageTests.h */,
+				BA65E06F1456754300F67FB2 /* DataStorageTests.m */,
+				BA65E0691456754300F67FB2 /* Supporting Files */,
+			);
+			path = DataStorageTests;
+			sourceTree = "<group>";
+		};
+		BA65E0691456754300F67FB2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BA65E06A1456754300F67FB2 /* DataStorageTests-Info.plist */,
+				BA65E06B1456754300F67FB2 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BA65E079145675E000F67FB2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BA65E084145675E000F67FB2 /* iPad */,
+				BA65E085145675E000F67FB2 /* iPhone */,
+				BA65E0DC1456800200F67FB2 /* DataStorage.xcdatamodeld */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		BA65E084145675E000F67FB2 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				BA65E09B145676DD00F67FB2 /* DSDetailViewController_iPad.xib */,
+				BA65E09C145676DD00F67FB2 /* DSMasterViewController_iPad.xib */,
+			);
+			path = iPad;
+			sourceTree = "<group>";
+		};
+		BA65E085145675E000F67FB2 /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				BA65E09F145676EB00F67FB2 /* DSDetailViewController_iPhone.xib */,
+				BA65E0A0145676EB00F67FB2 /* DSMasterViewController_iPhone.xib */,
+			);
+			path = iPhone;
+			sourceTree = "<group>";
+		};
+		BA65E0A3145676F900F67FB2 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				BA65E0B31456772700F67FB2 /* main.m */,
+				BA65E0AD145676F900F67FB2 /* DataStorage-Prefix.pch */,
+				BA65E0A4145676F900F67FB2 /* App */,
+				BA65E0AE145676F900F67FB2 /* Lib */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		BA65E0A4145676F900F67FB2 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				BA65E0AA145676F900F67FB2 /* DSAppDelegate.h */,
+				BA65E0AB145676F900F67FB2 /* DSAppDelegate.m */,
+				BA65E0A5145676F900F67FB2 /* Control */,
+				BA65E0D814567FC300F67FB2 /* Data */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		BA65E0A5145676F900F67FB2 /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				BA65E0A6145676F900F67FB2 /* DSDetailViewController.h */,
+				BA65E0A7145676F900F67FB2 /* DSDetailViewController.m */,
+				BA65E0A8145676F900F67FB2 /* DSMasterViewController.h */,
+				BA65E0A9145676F900F67FB2 /* DSMasterViewController.m */,
+			);
+			path = Control;
+			sourceTree = "<group>";
+		};
+		BA65E0AE145676F900F67FB2 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		BA65E0B914567C7100F67FB2 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				BA65E0BA14567C7100F67FB2 /* InfoPlist.strings */,
+				BA65E0C114567D5E00F67FB2 /* Localizable.strings */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
+		BA65E0BC14567C7100F67FB2 /* ja.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				BA65E0BD14567C7100F67FB2 /* InfoPlist.strings */,
+				BA65E0C414567D8200F67FB2 /* Localizable.strings */,
+			);
+			path = ja.lproj;
+			sourceTree = "<group>";
+		};
+		BA65E0D814567FC300F67FB2 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				BA65E0DF145680CF00F67FB2 /* Note.h */,
+				BA65E0E0145680CF00F67FB2 /* Note.m */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BA65E0331456754200F67FB2 /* DataStorage */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA65E0731456754300F67FB2 /* Build configuration list for PBXNativeTarget "DataStorage" */;
+			buildPhases = (
+				BA65E0301456754200F67FB2 /* Sources */,
+				BA65E0311456754200F67FB2 /* Frameworks */,
+				BA65E0321456754200F67FB2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DataStorage;
+			productName = DataStorage;
+			productReference = BA65E0341456754200F67FB2 /* DataStorage.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BA65E0601456754200F67FB2 /* DataStorageTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA65E0761456754300F67FB2 /* Build configuration list for PBXNativeTarget "DataStorageTests" */;
+			buildPhases = (
+				BA65E05C1456754200F67FB2 /* Sources */,
+				BA65E05D1456754200F67FB2 /* Frameworks */,
+				BA65E05E1456754200F67FB2 /* Resources */,
+				BA65E05F1456754200F67FB2 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BA65E0671456754300F67FB2 /* PBXTargetDependency */,
+			);
+			name = DataStorageTests;
+			productName = DataStorageTests;
+			productReference = BA65E0611456754200F67FB2 /* DataStorageTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BA65E02B1456754200F67FB2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = BA65E02E1456754200F67FB2 /* Build configuration list for PBXProject "DataStorage" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				ja,
+			);
+			mainGroup = BA65E0291456754200F67FB2;
+			productRefGroup = BA65E0351456754200F67FB2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BA65E0331456754200F67FB2 /* DataStorage */,
+				BA65E0601456754200F67FB2 /* DataStorageTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BA65E0321456754200F67FB2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA65E09D145676DD00F67FB2 /* DSDetailViewController_iPad.xib in Resources */,
+				BA65E09E145676DD00F67FB2 /* DSMasterViewController_iPad.xib in Resources */,
+				BA65E0A1145676EB00F67FB2 /* DSDetailViewController_iPhone.xib in Resources */,
+				BA65E0A2145676EB00F67FB2 /* DSMasterViewController_iPhone.xib in Resources */,
+				BA65E0BF14567C7100F67FB2 /* InfoPlist.strings in Resources */,
+				BA65E0C314567D5E00F67FB2 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA65E05E1456754200F67FB2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA65E06D1456754300F67FB2 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BA65E05F1456754200F67FB2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BA65E0301456754200F67FB2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA65E0AF145676F900F67FB2 /* DSDetailViewController.m in Sources */,
+				BA65E0B0145676F900F67FB2 /* DSMasterViewController.m in Sources */,
+				BA65E0B1145676F900F67FB2 /* DSAppDelegate.m in Sources */,
+				BA65E0B41456772700F67FB2 /* main.m in Sources */,
+				BA65E0DE1456800200F67FB2 /* DataStorage.xcdatamodeld in Sources */,
+				BA65E0E1145680CF00F67FB2 /* Note.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA65E05C1456754200F67FB2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA65E0701456754300F67FB2 /* DataStorageTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BA65E0671456754300F67FB2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BA65E0331456754200F67FB2 /* DataStorage */;
+			targetProxy = BA65E0661456754300F67FB2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BA65E06B1456754300F67FB2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BA65E06C1456754300F67FB2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		BA65E0BA14567C7100F67FB2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BA65E0BB14567C7100F67FB2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		BA65E0BD14567C7100F67FB2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BA65E0BE14567C7100F67FB2 /* ja */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		BA65E0C114567D5E00F67FB2 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BA65E0C214567D5E00F67FB2 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		BA65E0C414567D8200F67FB2 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BA65E0C514567D8200F67FB2 /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BA65E0711456754300F67FB2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BA65E0721456754300F67FB2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BA65E0741456754300F67FB2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DataStorage/Classes/DataStorage-Prefix.pch";
+				INFOPLIST_FILE = "DataStorage/DataStorage-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		BA65E0751456754300F67FB2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DataStorage/Classes/DataStorage-Prefix.pch";
+				INFOPLIST_FILE = "DataStorage/DataStorage-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		BA65E0771456754300F67FB2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DataStorage.app/DataStorage";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DataStorage/DataStorage-Prefix.pch";
+				INFOPLIST_FILE = "DataStorageTests/DataStorageTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		BA65E0781456754300F67FB2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DataStorage.app/DataStorage";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DataStorage/DataStorage-Prefix.pch";
+				INFOPLIST_FILE = "DataStorageTests/DataStorageTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BA65E02E1456754200F67FB2 /* Build configuration list for PBXProject "DataStorage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA65E0711456754300F67FB2 /* Debug */,
+				BA65E0721456754300F67FB2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA65E0731456754300F67FB2 /* Build configuration list for PBXNativeTarget "DataStorage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA65E0741456754300F67FB2 /* Debug */,
+				BA65E0751456754300F67FB2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		BA65E0761456754300F67FB2 /* Build configuration list for PBXNativeTarget "DataStorageTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA65E0771456754300F67FB2 /* Debug */,
+				BA65E0781456754300F67FB2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BA65E0DC1456800200F67FB2 /* DataStorage.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BA65E0DD1456800200F67FB2 /* DataStorage.xcdatamodel */,
+			);
+			currentVersion = BA65E0DD1456800200F67FB2 /* DataStorage.xcdatamodel */;
+			path = DataStorage.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = BA65E02B1456754200F67FB2 /* Project object */;
+}
