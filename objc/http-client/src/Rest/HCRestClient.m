@@ -2,7 +2,7 @@
 
 @interface HCRestClient ()
 
--(HCDataContentsDelegate*) contentsDelegate:(HCMethodDelegateType)type withResponseHandler:(ResponseHandler)handler;
+-(id <HCMethodDelegate>) contentsDelegate:(HCMethodDelegateType)type withResponseHandler:(ResponseHandler)handler;
 
 @end
 
@@ -16,7 +16,7 @@
   return kHCFailedAuthentication;
 }
 
--(HCDataContentsDelegate*) contentsDelegate:(HCMethodDelegateType) type withResponseHandler:(ResponseHandler)handler {
+-(id <HCMethodDelegate>) contentsDelegate:(HCMethodDelegateType) type withResponseHandler:(ResponseHandler)handler {
   switch (type) {
   case HCDataContentDelegate:
 	return [[[HCDataContentsDelegate alloc] initWithHandler:handler] autorelease];
