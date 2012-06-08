@@ -102,7 +102,6 @@
 		BA65E0291456754200F67FB2 = {
 			isa = PBXGroup;
 			children = (
-				BA65E0E31456872C00F67FB2 /* CoreData.framework */,
 				BA65E03E1456754200F67FB2 /* DataStorage */,
 				BA65E0681456754300F67FB2 /* DataStorageTests */,
 				BA65E0371456754200F67FB2 /* Frameworks */,
@@ -122,6 +121,7 @@
 		BA65E0371456754200F67FB2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BA65E0E31456872C00F67FB2 /* CoreData.framework */,
 				BA65E0381456754200F67FB2 /* UIKit.framework */,
 				BA65E03A1456754200F67FB2 /* Foundation.framework */,
 				BA65E03C1456754200F67FB2 /* CoreGraphics.framework */,
@@ -466,7 +466,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -485,7 +485,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -496,10 +496,12 @@
 		BA65E0741456754300F67FB2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DataStorage/Classes/DataStorage-Prefix.pch";
 				INFOPLIST_FILE = "DataStorage/DataStorage-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -507,10 +509,12 @@
 		BA65E0751456754300F67FB2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DataStorage/Classes/DataStorage-Prefix.pch";
 				INFOPLIST_FILE = "DataStorage/DataStorage-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -568,6 +572,7 @@
 				BA65E0751456754300F67FB2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BA65E0761456754300F67FB2 /* Build configuration list for PBXNativeTarget "DataStorageTests" */ = {
 			isa = XCConfigurationList;
@@ -576,6 +581,7 @@
 				BA65E0781456754300F67FB2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
