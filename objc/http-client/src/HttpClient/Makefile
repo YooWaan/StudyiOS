@@ -11,17 +11,18 @@ CC		= gcc
 CFLAG	= -g -Wall
 INC		= -I .
 OBJS	= \
+			HCConnectionDelegate.o \
 			HCBasicMethodDelegate.o \
 			HCDataContentsDelegate.o \
 			HCFileContentsDelegate.o \
-			HCURLConnectionDelegate.o \
 			HCBasicMethod.o \
 			HCGetMethod.o \
 			HCPostMethod.o \
 			HCPutMethod.o \
 			HCDeleteMethod.o \
 			HCSession.o \
-			HCHttpClient.o
+			HCClient.o
+
 
 all: $(OBJS)
 

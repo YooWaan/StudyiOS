@@ -1,8 +1,19 @@
+//
+// HCBasicMethodDelegate.m -
+//
+//
+//
+// Created by wooyoowaan@gmail.com on Mon Jun 11 14:56:28 2012
+// Copyright 2012 by yoowaan. All rights reserved.
+//
+
 #import "HCBasicMethodDelegate.h"
+
+#import "ARC.h"
 
 @interface HCBasicMethodDelegate ()
 
--(void) runCustomizeURLRequest:(NSURLRequest*) request;
+-(void) runCustomizeURLRequest:(NSMutableURLRequest*) request withSession:(HCSession*)session ;
 
 -(void) runHandleResponse:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response;
 
@@ -16,73 +27,52 @@
 
 @implementation HCBasicMethodDelegate
 
+@synthesize state, HttpStatus, httpError, errorCode, errorMessage, headerFields, responseHandler;
+
 -(id) init {
   if ((self = [super init]) != nil) {
-	methodState = HCMethodInitialized;
-	httpStatus = -1;
-	ns_error = nil;
-	errorCode = -1;
-	errorMessage = nil;
-	responseHandler = nil;
+	self.state = HCMethodInitialized;
+	self.HttpStatus = -1;
+	self.httpError = nil;
+	self.errorCode = -1;
+	self.errorMessage = nil;
+	self.responseHandler = nil;
+	headerFields = nil;
   }
   return self;
 }
 
 -(id) initWithHandler:(ResponseHandler)handler {
   if ((self = [self init]) != nil) {
-	responseHandler = [handler copy];
+	self.responseHandler = [handler copy];
   }
   return self;
 }
 
+#ifdef ARC_OFF
 -(void) dealloc {
-  if (ns_error != nil) {
-	[ns_error release];
-  }
-  if (errorMessage != nil) {
-	[errorMessage release];
-  }
-  if (responseHandler != nil) {
-	[responseHandler release];
+  self.httpError = nil;
+  self.errorMessage = nil;
+  self.responseHandler = nil;
+  if (headerFields) {
+	[headerFields release];
   }
   [super dealloc];
 }
+#endif
 
-#pragma mark -
-#pragma mark HCMethodCondition
 
--(HCMethodState) status {
-  return methodState;
-}
+-(id) ResponseContents {return nil;}
 
--(NSInteger) HttpStatus {
-  return httpStatus;
-}
-
--(NSError*) error {
-  return ns_error;
-}
-
--(NSInteger) errorCode {
-  return errorCode;;
-}
-
--(NSString*) errorMessage {
-  return errorMessage;
-}
-
--(id) ResponseContents {
-  return nil;
-}
 
 #pragma mark -
 #pragma mark HCHttpMethod
 
--(void) customizeURLRequest:(NSURLRequest*) request {
-  [self runCustomizeURLRequest:request];
+-(void) customizeURLRequest:(NSMutableURLRequest*)request withSession:(HCSession*)session {
+  [self runCustomizeURLRequest:request withSession:session];
 }
 
--(void) runCustomizeURLRequest:(NSURLRequest*)request {
+-(void) runCustomizeURLRequest:(NSMutableURLRequest*)request withSession:(HCSession*)session {
   // NOOP
 }
 
@@ -92,10 +82,10 @@
 -(void) onFinishMethodExecuting {
   //NSLog(@"onFinish %@", responseHandler);
   if (responseHandler != nil) {
-	if (ns_error == nil) {
-	  responseHandler([self ResponseContents], ns_error);
+	if (self.httpError == nil) {
+	  responseHandler([self ResponseContents], [self headerFields], [self HttpStatus], self.httpError);
 	} else {
-	  responseHandler(nil, ns_error);
+	  responseHandler(nil, [self headerFields],  [self HttpStatus], self.httpError);
 	}
   }
 }
@@ -104,9 +94,10 @@
 #pragma mark HCHttpMethodDelegate
 
 -(void)handleResponse:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-  methodState = HCMethodRunning;
+  self.state = HCMethodRunning;
   NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
-  httpStatus = [httpResponse statusCode];
+  self.HttpStatus = [httpResponse statusCode];
+  headerFields = RETAIN([httpResponse allHeaderFields]);
   [self runHandleResponse:connection didReceiveResponse:httpResponse];
 }
 
@@ -123,7 +114,7 @@
 }
 
 -(void)handleFinishLoading:(NSURLConnection *)connection {
-  methodState = HCMethodDone;
+  self.state = HCMethodDone;
   [self runFinishLoading: connection];
 }
 
@@ -136,8 +127,7 @@
 }
 
 -(void) runHandleError:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-  [ns_error autorelease];
-  ns_error = [error retain];
+  self.httpError = error;
   [self onFinishMethodExecuting];
 }
 

@@ -1,23 +1,23 @@
-#ifndef HCBASICCONTENTSDELEGATE_H
-#define HCBASICCONTENTSDELEGATE_H
+//
+// HCBasicMethodDelegate.h -
+//
+//
+//
+// Created by wooyoowaan@gmail.com on Mon Jun 11 14:55:38 2012
+// Copyright 2012 by yoowaan. All rights reserved.
+//
 
-#import "HCMethodDelegate.h"
 
-@interface HCBasicMethodDelegate : NSObject <HCMethodDelegate> {
-  HCMethodState methodState;
-  NSInteger httpStatus;
-  NSError* ns_error;
-  NSInteger errorCode;
-  NSString* errorMessage;
-  ResponseHandler responseHandler;
-}
+#ifndef __HCBASICMETHODDELEGATE_H_
+#define __HCBASICMETHODDELEGATE_H_
+
+#import "HCHttpMethod.h"
+
+@interface HCBasicMethodDelegate : NSObject <HCMethodDelegate>
+
+@property (nonatomic, retain) ResponseHandler responseHandler;
 
 -(id) initWithHandler:(ResponseHandler)handler;
-
-/*
--(void)handleData:(NSURLConnection *)connection didReceiveData:(NSData *)data;
--(void)handleFinishLoading:(NSURLConnection *)connection;
-*/
 
 @end
 

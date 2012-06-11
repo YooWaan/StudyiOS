@@ -1,25 +1,33 @@
-#ifndef HCFILECONTENTSDELEGATE_H
-#define HCFILECONTENTSDELEGATE_H
+//
+// HCFileContentsDelegate.h -
+//
+//
+//
+// Created by wooyoowaan@gmail.com on Mon Jun 11 15:19:00 2012
+// Copyright 2012 by yoowaan. All rights reserved.
+//
 
-#import <Foundation/Foundation.h>
+
+#ifndef __HCFILECONTENTSDELEGATE_H_
+#define __HCFILECONTENTSDELEGATE_H_
 
 #import "HCBasicMethodDelegate.h"
 
 @interface HCFileContentsDelegate : HCBasicMethodDelegate
 {
  @protected
-  NSString* filePath;
   NSFileHandle* fileHandle;
 }
 
--(id) initWithFilepath:(NSString*) path;
+//-(id) initWithFilepath:(NSString*) path;
 
--(NSString*) filepath;
+@property (nonatomic,assign) NSString* filepath;
 
 -(NSInputStream*) inputstream;
 
 -(NSData*) load;
 
 @end
+
 
 #endif

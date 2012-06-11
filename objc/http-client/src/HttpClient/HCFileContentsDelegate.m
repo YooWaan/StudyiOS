@@ -1,8 +1,28 @@
+//
+// HCFileContentsDelegate.m -
+//
+//
+//
+// Created by wooyoowaan@gmail.com on Mon Jun 11 15:19:53 2012
+// Copyright 2012 by yoowaan. All rights reserved.
+//
+
 #import "HCFileContentsDelegate.h"
 
+#import "ARC.h"
 
 @implementation HCFileContentsDelegate
 
+@synthesize filepath;
+
+-(id) initWithHandler:(ResponseHandler)handler {
+  if ((self = [super initWithHandler:handler]) != nil) {
+	fileHandle = nil;
+  }
+  return self;
+}
+
+/*
 -(id) initWithFilepath:(NSString*) path {
   if ((self = [super init]) != nil) {
 	filePath = [path copy];
@@ -10,17 +30,26 @@
   }
   return self;
 }
+*/
 
-
+#ifdef ARC_OFF
 -(void) dealloc {
-  [filePath release];
+  if (fileHandle != nil) {
+	[fileHandle release];
+  }
   [super dealloc];
 }
+#endif
 
 -(void) runHandle:(NSURLConnection *)connection didReceiveData:(NSData *)data{
   if (fileHandle == nil) {
-	fileHandle = [NSFileHandle fileHandleForWritingAtPath:filePath];
-	if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+	NSFileManager* manager = [NSFileManager defaultManager];
+	fileHandle = RETAIN([NSFileHandle fileHandleForWritingAtPath:self.filepath]);
+	if (fileHandle == nil) {
+	  [manager createFileAtPath:self.filepath contents:nil attributes:nil];
+	  fileHandle = RETAIN([NSFileHandle fileHandleForWritingAtPath:self.filepath]);
+	}
+	if ([[NSFileManager defaultManager] fileExistsAtPath:self.filepath]) {
 	  [fileHandle seekToEndOfFile];
 	}
   }
@@ -30,6 +59,8 @@
 -(void) runFinishLoading:(NSURLConnection *)connection {
   if (fileHandle != nil) {
 	[fileHandle closeFile];
+	RELEASE(fileHandle);
+	fileHandle = nil;
   }
   [self onFinishMethodExecuting];
 }
@@ -37,9 +68,10 @@
 -(void) runHandleError:(NSURLConnection *)connection didFailWithError:(NSError *)error {
   if (fileHandle != nil) {
 	[fileHandle closeFile];
+	RELEASE(fileHandle);
+	fileHandle = nil;
   }
-  [ns_error autorelease];
-  ns_error = [error retain];
+  self.httpError = error;
   [self onFinishMethodExecuting];
 }
 
@@ -47,16 +79,12 @@
   return [self inputstream];
 }
 
--(NSString*) filepath {
-  return filePath;
-}
-
 -(NSInputStream*) inputstream {
-  return [NSInputStream inputStreamWithFileAtPath:filePath];
+  return [NSInputStream inputStreamWithFileAtPath:self.filepath];
 }
 
 -(NSData*) load {
-  return [NSData dataWithContentsOfFile:filePath];
+  return [NSData dataWithContentsOfFile:self.filepath];
 }
 
 @end

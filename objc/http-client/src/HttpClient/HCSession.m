@@ -1,39 +1,68 @@
+//
+// HCSession.m -
+//
+//
+//
+// Created by wooyoowaan@gmail.com on Mon Jun 11 14:29:46 2012
+// Copyright 2012 by yoowaan. All rights reserved.
+//
+
 #import "HCSession.h"
+
+#import "ARC.h"
 
 @implementation HCSession
 
-@synthesize secure;
-@synthesize host;
-@synthesize port;
-@synthesize contextpath;
+@synthesize ignoreCertificateCheck, timeout;
 
 
 -(id) init {
   if ((self = [super init]) != nil) {
 	sessionHeader = [[NSMutableDictionary alloc] init];
+	self.ignoreCertificateCheck = NO;
+	self.timeout = 60;
   }
   return self;
 }
 
 -(id) initWithConnection:(NSString*) hostName specifiedPort:(NSUInteger) portNumber webContextPath:(NSString*) context secureFlag:(BOOL) flag {
   if ((self = [self init]) != nil) {
-	host = hostName;
-	port = portNumber;
-	contextpath = context;
-	secure = flag;
+	hostname = [hostName copy];
+	portnumber = portNumber;
+	webcontextpath = [context copy];
+	secureMode = flag;
   }
   return self;
 }
 
 -(id) copyWithZone:(NSZone*)zone {
-  return [[[self class] allocWithZone:zone] initWithConnection:host specifiedPort:port webContextPath:contextpath secureFlag:secure];
+  HCSession* session = [[[self class] allocWithZone:zone] initWithConnection:hostname specifiedPort:portnumber webContextPath:webcontextpath secureFlag:secureMode];
+  session.ignoreCertificateCheck = self.ignoreCertificateCheck;
+  return session;
 }
 
+#ifdef ARC_OFF
 -(void) dealloc {
-  [host release];
-  [contextpath release];
-  [sessionHeader release];
+  [hostname release];
+  [webcontextpath release];
+  //[sessionHeader release];
   [super dealloc];
+}
+#endif
+
+-(NSString*) host {
+  return hostname;
+}
+
+-(NSUInteger) port {
+  return portnumber;
+}
+
+-(BOOL) secure {
+  return secureMode;
+}
+-(NSString*) contextpath {
+  return webcontextpath;
 }
 
 -(BOOL) hasSession {
@@ -59,5 +88,6 @@
 -(NSString*) header:(NSString*) name {
   return [sessionHeader objectForKey:name];
 }
+
 
 @end

@@ -1,8 +1,18 @@
+//
+// HCBasicMethod.m -
+//
+//
+//
+// Created by wooyoowaan@gmail.com on Mon Jun 11 14:21:22 2012
+// Copyright 2012 by yoowaan. All rights reserved.
+//
+
 #import <Foundation/NSURLRequest.h>
 #import <Foundation/NSURLConnection.h>
 
+#import "ARC.h"
 #import "HCBasicMethod.h"
-#import "HCURLConnectionDelegate.h"
+#import "HCConnectionDelegate.h"
 
 NSString * const HC_HTTP_METHOD_GET    = @"GET";
 NSString * const HC_HTTP_METHOD_POST   = @"POST";
@@ -11,52 +21,55 @@ NSString * const HC_HTTP_METHOD_DELETE = @"DELETE";
 
 
 NSString* HCHttpMethodURLEncode(NSString* string) {
-  return [((NSString*)CFURLCreateStringByAddingPercentEscapes(
+  return (NSString*)CFURLCreateStringByAddingPercentEscapes(
 												 kCFAllocatorDefault,
 												 (CFStringRef)string,
 												 NULL,
 												 CFSTR (";,/?:@&=+$#"),
-												 kCFStringEncodingUTF8))
-		   autorelease];
+												 kCFStringEncodingUTF8);
 }
+
 
 
 @interface HCBasicMethod ()
 
 -(NSString*) URLString:(HCSession*) session;
 
--(id <NSURLConnectionDelegate>) connectionDelegate;
+-(id <NSURLConnectionDelegate>) connectionDelegate:(HCSession*)session;
 
 @end
 
 @implementation HCBasicMethod
 
--(id)initWithPathAndDelegate:(NSString*)path withMethodDelegate:(id <HCMethodDelegate>) delegate {
-  self = [super init];
-  if (self != nil) {
-	pathForRequest = path;;
-	methodDelegate = delegate;
-	requestParameters = [[NSMutableDictionary alloc] init];
+@synthesize delegate, useBody, pathForRequest;
+
+
+-(id) init {
+  if ((self = [super init]) != nil) {
+	requestParameters = RETAIN([NSMutableDictionary dictionary]);
+	self.useBody = NO;
   }
   return self;
 }
 
+-(id)initWithPathAndDelegate:(NSString*)path withMethodDelegate:(id <HCMethodDelegate>) methodDelegate {
+  if ((self = [self init]) != nil) {
+	self.pathForRequest = path;;
+	self.delegate = methodDelegate;
+  }
+  return self;
+}
+
+#ifdef ARC_OFF
 -(void) dealloc {
   [requestParameters release];
+  self.pathForRequest = nil;
   [super dealloc];
 }
+#endif
 
 -(NSString*) name {
   return nil;
-}
-
--(BOOL) useBody {
-  NSString* method = [self name];
-  return ([method isEqualToString:HC_HTTP_METHOD_POST] || [method isEqualToString:HC_HTTP_METHOD_PUT]) ? YES : NO ;
-}
-
--(void) setDelegate:(id <HCMethodDelegate>)delegate {
-  methodDelegate = delegate;
 }
 
 -(void) addParameters:(NSDictionary*) parameters {
@@ -86,29 +99,31 @@ NSString* HCHttpMethodURLEncode(NSString* string) {
 
 -(void)executeMethod:(HCSession*) session asynchronous:(BOOL) async {
   NSURLRequest * request = [self URLRequest: session];
-  id <NSURLConnectionDelegate> connectionDelegate = [self connectionDelegate];
+  id <NSURLConnectionDelegate> connectionDelegate = [self connectionDelegate:session];
 
   //NSURLConnection* connection = [[[NSURLConnection alloc] initWithRequest:request delegate:connectionDelegate startImmediately: NO] autorelease];
-  //NSURLConnection* connection = [NSURLConnection connectionWithRequest:request delegate: connectionDelegate ];
   [NSURLConnection connectionWithRequest:request delegate: connectionDelegate ];
 
   if (!async) {
 	NSRunLoop* loop = [NSRunLoop currentRunLoop];
-	while ([methodDelegate status] != HCMethodDone && [loop runMode:NSDefaultRunLoopMode beforeDate:[[NSDate distantFuture] autorelease]]);
+	while (self.delegate.state != HCMethodDone && [loop runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture] ]);
   }
 }
 
-
--(id <NSURLConnectionDelegate>) connectionDelegate {
-  return [[[HCURLConnectionDelegate alloc] initWithContentsDelegate:methodDelegate] autorelease];
+-(id <NSURLConnectionDelegate>) connectionDelegate:(HCSession*)session {
+  HCConnectionDelegate* connectionDelegate = [[HCConnectionDelegate alloc] initWithContentsDelegate:self.delegate] ;
+  connectionDelegate.ignoreCertificateCheck = session.ignoreCertificateCheck;
+  return connectionDelegate;
 }
 
 -(NSURLRequest*) URLRequest:(HCSession*) session {
-  NSMutableURLRequest* request = [[[NSMutableURLRequest alloc] init] autorelease];
+  NSMutableURLRequest* request = [[NSMutableURLRequest alloc] init] ;
 
   // METHOD , URL , HEADER
   [request setHTTPMethod: [self name]];
   [request setURL:[NSURL URLWithString:[self URLString: session]]];
+  [request setCachePolicy:NSURLRequestReloadIgnoringCacheData];
+  [request setTimeoutInterval:session.timeout];
   NSDictionary* headers = [session headers];
   NSEnumerator* enumerator = [headers keyEnumerator];
   id key;
@@ -117,49 +132,74 @@ NSString* HCHttpMethodURLEncode(NSString* string) {
   }
 
   // customized by sub class
-  [methodDelegate customizeURLRequest:request];
+  [self.delegate customizeURLRequest:request withSession:session];
 
   return request;
 }
 
 -(NSString*) URLString:(HCSession*) session {
-  NSMutableString* url = [[[NSMutableString alloc] init] autorelease];
-  if (session.secure) {
-	[url appendString:@"https://"];
-  } else {
-	[url appendString:@"http://"];
-  }
-  [url appendString:session.host];
-  if (!(session.port == 80 || session.port == 443)) {
-	[url appendString:@":"];
-	[url appendString:session.host];
-  }
-  [url appendString:@"/"];
-  if (session.contextpath != nil) {
-	[url appendString:session.contextpath];
+    NSMutableString* url = [[NSMutableString alloc] init] ;
+	if (session.secure) {
+	  [url appendString:@"https://"];
+	} else {
+	  [url appendString:@"http://"];
+	}
+	NSString* str = [session host];
+	[url appendString:str];
+	NSUInteger port = [session port];
+	if (!(port == 80 || port == 443)) {
+	  [url appendString:@":"];
+	  [url appendFormat:@"%d", port];
+	}
 	[url appendString:@"/"];
-  }
-  [url appendString:pathForRequest];
-  if (![self useBody] && [requestParameters count] > 0) {
-	BOOL first = YES;
-	NSEnumerator* enumerator = [requestParameters keyEnumerator];
-	id key, value;
-	while ((key = [enumerator nextObject])) {
-	  value = [requestParameters objectForKey:key];
-	  if (first) {
+	str = [session contextpath];
+	if (str != nil) {
+	  [url appendString:str];
+	  [url appendString:@"/"];
+	}
+	if (self.pathForRequest) {
+	  [url appendString:pathForRequest];
+	}
+	if (!self.useBody && [requestParameters count] > 0) {
+	  [self appendParameterString:url];
+	}
+  return url;
+}
+
+-(void) appendParameterString:(NSMutableString*) url {
+  BOOL first = YES;
+  NSEnumerator* enumerator = [requestParameters keyEnumerator];
+  id key, value;
+  while ((key = [enumerator nextObject])) {
+	value = [requestParameters objectForKey:key];
+	if (first) {
+	  if (!self.useBody) {
 		[url appendString:@"?"];
-		first = NO;
-	  } else {
-		[url appendString:@"&"];
 	  }
-	  [url appendString:key];
+	  first = NO;
+	} else {
+	  [url appendString:@"&"];
+	}
+
+	if ([value isKindOfClass:[NSString class]]) {
+	  [url appendString:HCHttpMethodURLEncode(key)];
 	  [url appendString:@"="];
 	  [url appendString:HCHttpMethodURLEncode(value)];
+	} else if ([value isKindOfClass:[NSArray class]]) {
+	  first = YES;
+	  for (NSString* str in (NSArray*)value) {
+		if (first) {
+		  first = NO;
+		} else {
+		  [url appendString:@"&"];
+		}
+		[url appendString:HCHttpMethodURLEncode(key)];
+		[url appendString:@"="];
+		[url appendString:HCHttpMethodURLEncode(str)];
+	  }
+	  first = NO;
 	}
   }
-
-  //NSLog(@"url --> %@", url);
-  return url;
 }
 
 @end
