@@ -1,5 +1,7 @@
 #import "HCRestClient.h"
 
+#import "HCHttpMethod.h"
+
 @interface HCRestClient ()
 
 -(id <HCMethodDelegate>) contentsDelegate:(HCMethodDelegateType)type withResponseHandler:(ResponseHandler)handler;
@@ -18,9 +20,9 @@
 
 -(id <HCMethodDelegate>) contentsDelegate:(HCMethodDelegateType) type withResponseHandler:(ResponseHandler)handler {
   switch (type) {
-  case HCDataContentDelegate:
+  case HCDataContentDelegateType:
 	return [[[HCDataContentsDelegate alloc] initWithHandler:handler] autorelease];
-  case HCFileContentDelegate:
+  case HCFileContentDelegateType:
 	return [[[HCFileContentsDelegate alloc] initWithHandler:handler] autorelease];
   }
   return nil;
@@ -31,7 +33,7 @@
 -(void) get:(NSString*)path withResponseHandler:(ResponseHandler)handler {
   HCGetMethod* method = [[[HCGetMethod alloc]
 						   initWithPathAndDelegate:path
-								withMethodDelegate:[self contentsDelegate:HCDataContentDelegate withResponseHandler:handler]
+								withMethodDelegate:[self contentsDelegate:HCDataContentDelegateType withResponseHandler:handler]
 						  ] autorelease];
   [self communicate:method];
 }
@@ -41,7 +43,7 @@
 -(void) post:(NSString*)path withResponseHandler:(ResponseHandler)handler {
   HCPostMethod* method = [[[HCPostMethod alloc]
 							initWithPathAndDelegate:path
-								 withMethodDelegate:[self contentsDelegate:HCDataContentDelegate withResponseHandler:handler]
+								 withMethodDelegate:[self contentsDelegate:HCDataContentDelegateType withResponseHandler:handler]
 						   ] autorelease];
   [self communicate:method];
 }
@@ -49,25 +51,25 @@
 -(void) post:(NSString*)path withBodyStream:(NSInputStream*)bodystream withResponseHandler:(ResponseHandler)handler {
   HCPostMethod* method = [[[HCPostMethod alloc]
 							initWithPathAndDelegate:path
-								 withMethodDelegate:[self contentsDelegate:HCDataContentDelegate withResponseHandler:handler]
+								 withMethodDelegate:[self contentsDelegate:HCDataContentDelegateType withResponseHandler:handler]
 						   ] autorelease];
-  [method setBodyStream:bodystream];
+  method.bodyStream = bodystream;
   [self communicate:method];
 }
 
 -(void) post:(NSString*)path withBodyData:(NSData*)bodyData withResponseHandler:(ResponseHandler)handler {
   HCPostMethod* method = [[[HCPostMethod alloc]
 							initWithPathAndDelegate:path
-								 withMethodDelegate:[self contentsDelegate:HCDataContentDelegate withResponseHandler:handler]
+								 withMethodDelegate:[self contentsDelegate:HCDataContentDelegateType withResponseHandler:handler]
 						   ] autorelease];
-  [method setBody:bodyData];
+  method.bodyData = bodyData;
   [self communicate:method];
 }
 
 -(void) post:(NSString*)path queryParameters:(NSDictionary*)parameters withResponseHandler:(ResponseHandler)handler {
   HCPostMethod* method = [[[HCPostMethod alloc]
 							initWithPathAndDelegate:path
-								 withMethodDelegate:[self contentsDelegate:HCDataContentDelegate withResponseHandler:handler]
+								 withMethodDelegate:[self contentsDelegate:HCDataContentDelegateType withResponseHandler:handler]
 						   ] autorelease];
   [method addParameters:parameters];
   [self communicate:method];
@@ -78,7 +80,7 @@
 -(void) put:(NSString*)path withResponseHandler:(ResponseHandler)handler {
   HCPutMethod* method = [[[HCPutMethod alloc]
 							initWithPathAndDelegate:path
-								 withMethodDelegate:[self contentsDelegate:HCDataContentDelegate withResponseHandler:handler]
+								 withMethodDelegate:[self contentsDelegate:HCDataContentDelegateType withResponseHandler:handler]
 						   ] autorelease];
   [self communicate:method];
 }
@@ -86,25 +88,25 @@
 -(void) put:(NSString*)path withBodyStream:(NSInputStream*)bodystream withResponseHandler:(ResponseHandler)handler {
   HCPutMethod* method = [[[HCPutMethod alloc]
 							initWithPathAndDelegate:path
-								 withMethodDelegate:[self contentsDelegate:HCDataContentDelegate withResponseHandler:handler]
+								 withMethodDelegate:[self contentsDelegate:HCDataContentDelegateType withResponseHandler:handler]
 						   ] autorelease];
-  [method setBodyStream:bodystream];
+  method.bodyStream = bodystream;
   [self communicate:method];
 }
 
 -(void) put:(NSString*)path withBodyData:(NSData*)bodyData withResponseHandler:(ResponseHandler)handler {
   HCPutMethod* method = [[[HCPutMethod alloc]
 							initWithPathAndDelegate:path
-								 withMethodDelegate:[self contentsDelegate:HCDataContentDelegate withResponseHandler:handler]
+								 withMethodDelegate:[self contentsDelegate:HCDataContentDelegateType withResponseHandler:handler]
 						   ] autorelease];
-  [method setBody:bodyData];
+  method.bodyData = bodyData;
   [self communicate:method];
 }
 
 -(void) put:(NSString*)path queryParameters:(NSDictionary*)parameters withResponseHandler:(ResponseHandler)handler {
   HCPutMethod* method = [[[HCPutMethod alloc]
 							initWithPathAndDelegate:path
-								 withMethodDelegate:[self contentsDelegate:HCDataContentDelegate withResponseHandler:handler]
+								 withMethodDelegate:[self contentsDelegate:HCDataContentDelegateType withResponseHandler:handler]
 						   ] autorelease];
   [method addParameters:parameters];
   [self communicate:method];
@@ -115,7 +117,7 @@
 -(void) delete:(NSString*)path withResponseHandler:(ResponseHandler)handler {
   HCDeleteMethod* method = [[[HCDeleteMethod alloc]
 						   initWithPathAndDelegate:path
-								withMethodDelegate:[self contentsDelegate:HCDataContentDelegate withResponseHandler:handler]
+								withMethodDelegate:[self contentsDelegate:HCDataContentDelegateType withResponseHandler:handler]
 						  ] autorelease];
   [self communicate:method];
 }

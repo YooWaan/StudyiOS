@@ -1,0 +1,169 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		BAA4EB8615AAEA5E00F45FFC /* http.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = http.m; sourceTree = "<group>"; };
+		BAA4EB8815AAEA5E00F45FFC /* ARC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARC.h; sourceTree = "<group>"; };
+		BAA4EB8915AAEA5E00F45FFC /* HCBasicMethod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HCBasicMethod.h; sourceTree = "<group>"; };
+		BAA4EB8A15AAEA5E00F45FFC /* HCBasicMethod.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HCBasicMethod.m; sourceTree = "<group>"; };
+		BAA4EB8B15AAEA5E00F45FFC /* HCBasicMethodDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HCBasicMethodDelegate.h; sourceTree = "<group>"; };
+		BAA4EB8C15AAEA5E00F45FFC /* HCBasicMethodDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HCBasicMethodDelegate.m; sourceTree = "<group>"; };
+		BAA4EB8D15AAEA5E00F45FFC /* HCClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HCClient.h; sourceTree = "<group>"; };
+		BAA4EB8E15AAEA5E00F45FFC /* HCClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HCClient.m; sourceTree = "<group>"; };
+		BAA4EB8F15AAEA5E00F45FFC /* HCConnectionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HCConnectionDelegate.h; sourceTree = "<group>"; };
+		BAA4EB9015AAEA5E00F45FFC /* HCConnectionDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HCConnectionDelegate.m; sourceTree = "<group>"; };
+		BAA4EB9115AAEA5E00F45FFC /* HCDataContentsDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HCDataContentsDelegate.h; sourceTree = "<group>"; };
+		BAA4EB9215AAEA5E00F45FFC /* HCDataContentsDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HCDataContentsDelegate.m; sourceTree = "<group>"; };
+		BAA4EB9315AAEA5E00F45FFC /* HCDeleteMethod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HCDeleteMethod.h; sourceTree = "<group>"; };
+		BAA4EB9415AAEA5E00F45FFC /* HCDeleteMethod.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HCDeleteMethod.m; sourceTree = "<group>"; };
+		BAA4EB9515AAEA5E00F45FFC /* HCFileContentsDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HCFileContentsDelegate.h; sourceTree = "<group>"; };
+		BAA4EB9615AAEA5E00F45FFC /* HCFileContentsDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HCFileContentsDelegate.m; sourceTree = "<group>"; };
+		BAA4EB9715AAEA5E00F45FFC /* HCGetMethod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HCGetMethod.h; sourceTree = "<group>"; };
+		BAA4EB9815AAEA5E00F45FFC /* HCGetMethod.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HCGetMethod.m; sourceTree = "<group>"; };
+		BAA4EB9915AAEA5E00F45FFC /* HCHttpClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HCHttpClient.h; sourceTree = "<group>"; };
+		BAA4EB9A15AAEA5E00F45FFC /* HCHttpMethod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HCHttpMethod.h; sourceTree = "<group>"; };
+		BAA4EB9B15AAEA5E00F45FFC /* HCPostMethod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HCPostMethod.h; sourceTree = "<group>"; };
+		BAA4EB9C15AAEA5E00F45FFC /* HCPostMethod.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HCPostMethod.m; sourceTree = "<group>"; };
+		BAA4EB9D15AAEA5E00F45FFC /* HCPutMethod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HCPutMethod.h; sourceTree = "<group>"; };
+		BAA4EB9E15AAEA5E00F45FFC /* HCPutMethod.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HCPutMethod.m; sourceTree = "<group>"; };
+		BAA4EB9F15AAEA5E00F45FFC /* HCSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HCSession.h; sourceTree = "<group>"; };
+		BAA4EBA015AAEA5E00F45FFC /* HCSession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HCSession.m; sourceTree = "<group>"; };
+		BAA4EBA115AAEA5E00F45FFC /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		BAA4EBA315AAEA5E00F45FFC /* HCAuthentication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HCAuthentication.h; sourceTree = "<group>"; };
+		BAA4EBA415AAEA5E00F45FFC /* HCBasicXMLDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HCBasicXMLDelegate.h; sourceTree = "<group>"; };
+		BAA4EBA515AAEA5E00F45FFC /* HCBasicXMLDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HCBasicXMLDelegate.m; sourceTree = "<group>"; };
+		BAA4EBA615AAEA5E00F45FFC /* HCRestClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HCRestClient.h; sourceTree = "<group>"; };
+		BAA4EBA715AAEA5E00F45FFC /* HCRestClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HCRestClient.m; sourceTree = "<group>"; };
+		BAA4EBA815AAEA5E00F45FFC /* HCRestSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HCRestSession.h; sourceTree = "<group>"; };
+		BAA4EBA915AAEA5E00F45FFC /* HCRestSession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HCRestSession.m; sourceTree = "<group>"; };
+		BAA4EBAA15AAEA5E00F45FFC /* HCXMLToDictionaryDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HCXMLToDictionaryDelegate.h; sourceTree = "<group>"; };
+		BAA4EBAB15AAEA5E00F45FFC /* HCXMLToDictionaryDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HCXMLToDictionaryDelegate.m; sourceTree = "<group>"; };
+		BAA4EBAC15AAEA5E00F45FFC /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		BAA4EB7C15AAEA0500F45FFC = {
+			isa = PBXGroup;
+			children = (
+				BAA4EB8515AAEA5E00F45FFC /* src */,
+			);
+			sourceTree = "<group>";
+		};
+		BAA4EB8515AAEA5E00F45FFC /* src */ = {
+			isa = PBXGroup;
+			children = (
+				BAA4EB8615AAEA5E00F45FFC /* http.m */,
+				BAA4EB8715AAEA5E00F45FFC /* HttpClient */,
+				BAA4EBA215AAEA5E00F45FFC /* Rest */,
+			);
+			name = src;
+			path = ../src;
+			sourceTree = "<group>";
+		};
+		BAA4EB8715AAEA5E00F45FFC /* HttpClient */ = {
+			isa = PBXGroup;
+			children = (
+				BAA4EB8815AAEA5E00F45FFC /* ARC.h */,
+				BAA4EB8915AAEA5E00F45FFC /* HCBasicMethod.h */,
+				BAA4EB8A15AAEA5E00F45FFC /* HCBasicMethod.m */,
+				BAA4EB8B15AAEA5E00F45FFC /* HCBasicMethodDelegate.h */,
+				BAA4EB8C15AAEA5E00F45FFC /* HCBasicMethodDelegate.m */,
+				BAA4EB8D15AAEA5E00F45FFC /* HCClient.h */,
+				BAA4EB8E15AAEA5E00F45FFC /* HCClient.m */,
+				BAA4EB8F15AAEA5E00F45FFC /* HCConnectionDelegate.h */,
+				BAA4EB9015AAEA5E00F45FFC /* HCConnectionDelegate.m */,
+				BAA4EB9115AAEA5E00F45FFC /* HCDataContentsDelegate.h */,
+				BAA4EB9215AAEA5E00F45FFC /* HCDataContentsDelegate.m */,
+				BAA4EB9315AAEA5E00F45FFC /* HCDeleteMethod.h */,
+				BAA4EB9415AAEA5E00F45FFC /* HCDeleteMethod.m */,
+				BAA4EB9515AAEA5E00F45FFC /* HCFileContentsDelegate.h */,
+				BAA4EB9615AAEA5E00F45FFC /* HCFileContentsDelegate.m */,
+				BAA4EB9715AAEA5E00F45FFC /* HCGetMethod.h */,
+				BAA4EB9815AAEA5E00F45FFC /* HCGetMethod.m */,
+				BAA4EB9915AAEA5E00F45FFC /* HCHttpClient.h */,
+				BAA4EB9A15AAEA5E00F45FFC /* HCHttpMethod.h */,
+				BAA4EB9B15AAEA5E00F45FFC /* HCPostMethod.h */,
+				BAA4EB9C15AAEA5E00F45FFC /* HCPostMethod.m */,
+				BAA4EB9D15AAEA5E00F45FFC /* HCPutMethod.h */,
+				BAA4EB9E15AAEA5E00F45FFC /* HCPutMethod.m */,
+				BAA4EB9F15AAEA5E00F45FFC /* HCSession.h */,
+				BAA4EBA015AAEA5E00F45FFC /* HCSession.m */,
+				BAA4EBA115AAEA5E00F45FFC /* Makefile */,
+			);
+			path = HttpClient;
+			sourceTree = "<group>";
+		};
+		BAA4EBA215AAEA5E00F45FFC /* Rest */ = {
+			isa = PBXGroup;
+			children = (
+				BAA4EBA315AAEA5E00F45FFC /* HCAuthentication.h */,
+				BAA4EBA415AAEA5E00F45FFC /* HCBasicXMLDelegate.h */,
+				BAA4EBA515AAEA5E00F45FFC /* HCBasicXMLDelegate.m */,
+				BAA4EBA615AAEA5E00F45FFC /* HCRestClient.h */,
+				BAA4EBA715AAEA5E00F45FFC /* HCRestClient.m */,
+				BAA4EBA815AAEA5E00F45FFC /* HCRestSession.h */,
+				BAA4EBA915AAEA5E00F45FFC /* HCRestSession.m */,
+				BAA4EBAA15AAEA5E00F45FFC /* HCXMLToDictionaryDelegate.h */,
+				BAA4EBAB15AAEA5E00F45FFC /* HCXMLToDictionaryDelegate.m */,
+				BAA4EBAC15AAEA5E00F45FFC /* Makefile */,
+			);
+			path = Rest;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		BAA4EB7E15AAEA0500F45FFC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = BAA4EB8115AAEA0500F45FFC /* Build configuration list for PBXProject "HttpClient" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BAA4EB7C15AAEA0500F45FFC;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		BAA4EB8315AAEA0600F45FFC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		BAA4EB8415AAEA0600F45FFC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BAA4EB8115AAEA0500F45FFC /* Build configuration list for PBXProject "HttpClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BAA4EB8315AAEA0600F45FFC /* Debug */,
+				BAA4EB8415AAEA0600F45FFC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BAA4EB7E15AAEA0500F45FFC /* Project object */;
+}

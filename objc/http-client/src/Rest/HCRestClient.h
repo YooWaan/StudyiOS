@@ -7,10 +7,13 @@
 #import "HCXMLToDictionaryDelegate.h"
 #import "HCAuthentication.h"
 
-@interface HCRestClient : HCHttpClient <HCAuthentication>
-{
+typedef enum hcMethodDelegateType {
+  HCDataContentDelegateType = 1,
+  HCFileContentDelegateType = 2
+} HCMethodDelegateType;
 
-}
+
+@interface HCRestClient : HCClient <HCAuthentication>
 
 #pragma mark GET METHOD
 

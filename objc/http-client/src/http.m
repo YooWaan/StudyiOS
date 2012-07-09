@@ -17,7 +17,7 @@
 
   __block NSDictionary* list = nil;
 
-  [self get:@"list.xml" withResponseHandler:^(id contents, NSError* err) {
+  [self get:@"list.xml" withResponseHandler:^(id contents, NSDictionary* header, NSInteger httpStatus, NSError* err) {
 		NSData* data = (NSData*)contents;
 		NSXMLParser* parser = [[[NSXMLParser alloc] initWithData:data] autorelease];
 		HCXMLToDictionaryDelegate* delegate = [[[HCXMLToDictionaryDelegate alloc] init] autorelease];

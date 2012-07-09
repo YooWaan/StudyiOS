@@ -8,7 +8,7 @@ SRCDIR	= src
 OBJDIR	= objs
 
 TARGET	= http
-CC		= gcc
+CC		= clang
 CFLAG	= -g -Wall
 INC		= -I ./$(SRCDIR)/HttpClient -I ./$(SRCDIR)/Rest 
 OBJS	= $(OBJDIR)/*.o
@@ -17,19 +17,19 @@ OBJS	= $(OBJDIR)/*.o
 #		BasicMethod.o \
 #		XMLContentsDelegate.o
 
-MODULES = HttpClient \
-			Rest
+MODULES = HttpClient Rest
 
 #.PHONY=all $(MODULES)
 #	$(CC) $(CFLAG) $(INC) -o ${TARGET} $(SRCDIR)/$(TARGET).m $(addprefix $(OBJDIR)/, $(OBJS)) -framework Foundation
 
-all: $(MODULES)
+all: module
 	$(CC) $(CFLAG) $(INC) -o ${TARGET} $(SRCDIR)/$(TARGET).m $(OBJS) -framework Foundation
 
-module:$(MODULES)
+module: $(MODULES)
 
 $(MODULES):
 	-cd $(addprefix $(SRCDIR)/, $@); make
+
 
 #$(OBJS):
 #	$(CC) $(CFLAG) $(INC) -o $(OBJDIR)/$@ -c $(SRCDIR)/$(@:.o=.m)
